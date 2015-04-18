@@ -39,8 +39,6 @@ module Capachrome
       @uri           = URI.parse "http://#{Platform.localhost}:#{port}"
       server_command = [executable_path, "--port=#{port}", *extra_args]
 
-      puts "*"*20
-      puts server_command
       @process       = ChildProcess.build(*server_command)
       @socket_poller = SocketPoller.new Platform.localhost, port, START_TIMEOUT
 

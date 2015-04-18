@@ -29,7 +29,7 @@ module Capachrome
             headers["Content-Type"]   = "#{CONTENT_TYPE}; charset=utf-8"
             headers["Content-Length"] = payload.bytesize.to_s if [:post, :put].include?(verb)
 
-            if true #$DEBUG
+            if $DEBUG
               puts "   >>> #{url} | #{payload}"
               puts "     > #{headers.inspect}"
             end

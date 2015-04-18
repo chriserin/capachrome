@@ -104,9 +104,8 @@ module Capachrome
       end
 
       def create_session(desired_capabilities)
-        puts "creating session"
+        desired_capabilities.merge!({"loggingPrefs": {"browser": "ALL"}})
         resp = raw_execute :newSession, {}, :desiredCapabilities => desired_capabilities
-        require 'pry'; binding.pry;
         @session_id = resp['sessionId'] or raise Error::WebDriverError, 'no sessionId in returned payload'
 
         Capabilities.json_create resp['value']
@@ -644,7 +643,7 @@ module Capachrome
           raise ArgumentError, "#{opts.inspect} invalid for #{command.inspect}"
         end
 
-        puts "-> #{verb.to_s.upcase} #{path}"# if $DEBUG
+        puts "-> #{verb.to_s.upcase} #{path}" if $DEBUG
         http.call verb, path, command_hash
       end
 

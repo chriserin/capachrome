@@ -36,7 +36,6 @@ module Capachrome
           retries = 0
           begin
             response = response_for(request)
-            puts response
           rescue Errno::ECONNABORTED, Errno::ECONNRESET, Errno::EADDRINUSE
             # a retry is sometimes needed on Windows XP where we may quickly
             # run out of ephemeral ports
@@ -80,13 +79,11 @@ module Capachrome
         end
 
         def response_for(request)
-          puts "making request #{request}"
           http.request request
         end
 
         def new_http_client
           if use_proxy?
-            puts "using proxy"
             unless proxy.respond_to?(:http) && url = @proxy.http
               raise Error::WebDriverError, "expected HTTP proxy, got #{@proxy.inspect}"
             end
@@ -96,7 +93,6 @@ module Capachrome
             clazz = Net::HTTP::Proxy(proxy.host, proxy.port, proxy.user, proxy.password)
             clazz.new(server_url.host, server_url.port)
           else
-            puts "not using proxy"
             Net::HTTP.new server_url.host, server_url.port
           end
         end

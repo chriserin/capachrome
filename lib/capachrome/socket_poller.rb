@@ -73,7 +73,7 @@ module Capachrome
         true
       rescue *NOT_CONNECTED_ERRORS
         sock.close if sock
-        $stderr.puts [@host, @port].inspect if $DEBUG
+        $stderr.puts [@host, @port].inspect if# $DEBUG
         false
       end
     end
