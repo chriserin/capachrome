@@ -512,7 +512,8 @@ module Capachrome
         data = execute :getLog, {}, :type => type.to_s
 
         Array(data).map do |l|
-          LogEntry.new l.fetch('level'), l.fetch('timestamp'), l.fetch('message')
+          l.fetch('message')
+          # LogEntry.new l.fetch('level'), l.fetch('timestamp'), l.fetch('message')
         end
       end
 

@@ -61,6 +61,10 @@ class Capybara::Capachrome::Driver < Capybara::Driver::Base
     browser.current_url
   end
 
+  def getLog(logType)
+    browser.instance_variable_get(:@bridge).getLog(logType)
+  end
+
   def find_xpath(selector)
     browser.find_elements(:xpath, selector).map { |node| Capybara::Selenium::Node.new(self, node) }
   end
