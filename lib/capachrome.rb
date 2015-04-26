@@ -18,6 +18,8 @@ require "capachrome/takes_screenshot"
 require "capachrome/has_input_devices"
 require "capachrome/version"
 require "capachrome/web_driver"
+require "capachrome/element"
+require "capachrome/keys"
 require "capybara/capachrome/driver"
 
 module Capachrome
