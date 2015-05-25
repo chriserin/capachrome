@@ -511,9 +511,7 @@ module Capachrome
       def getLog(type)
         data = execute :getLog, {}, :type => type.to_s
 
-        Array(data).map do |l|
-          l.fetch('message').split(/\s\d+:\d+\s/).last
-        end
+        Array(data)
       end
 
       #
